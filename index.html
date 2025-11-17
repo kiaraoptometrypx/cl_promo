@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Contact Lens Selector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1=" />
+<style>
+/* === Lightbox (shared) === */
+#imgZoom{position:fixed;inset:0;display:none;background:rgba(0,0,0,.75);align-items:center;justify-content:center;z-index:10000;cursor:zoom-out}
+#imgZoom.open{display:flex}
+#imgZoom .inner{position:relative}
+#imgZoom .hint{position:absolute;right:8px;bottom:-22px;color:#eee;font-size:11px;user-select:none}
+#zoomCardBox{display:none;max-width:920px;width:46vw;background:#ffffe0;border:1px solid #d7d7cf;border-radius:14px;padding:14px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+
+/* ========= Base ========= */
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:12px;line-height:1.3;margin:0;background:#f8f8f5;color:#0b3d2e}
+h1{font-size:14px;text-align:center;margin:10px 0 12px}
+h2{font-size:13px;margin:6px 0 8px}
+
+
+/* ========= Layout ========= */
+.container{max-width:1100px;margin:0 auto;padding:40px}
+.wrap{width:100%;min-width:300px}
+
+/* ========= Sections ========= */
+.section{background:#ffffe0;border:1px solid #d7d7cf;border-radius:10px;padding:8px;margin:8px 0}
+.section2{background:#f5f5b5;border:1px solid #d7d7cf;border-radius:10px;padding:8px;margin:8px 0}
+.section3{background:#fff;border:1px solid #d7d7cf;border-radius:10px;padding:8px;margin:8px 0}
+
+.lens-card{padding:12px;border:1px solid #d7d7cf;border-radius:10px;background:#ffffe0;box-shadow:0 1px 0 rgba(0,0,0,.04);transition:box-shadow .15s ease,transform .15s ease;cursor:pointer}
+.lens-card:hover{box-shadow:0 4px 10px rgba(0,0,0,.06);transform:translateY(-1px)}
+
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px 12px}
+label{display:block}
+input[type="checkbox"]{margin-right:4px}
+
+/* ========= Results ========= */
+.results{margin-top:12px}
+#sortBar{margin:8px 0;padding:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#cardsGrid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:10px}
+
+/* Compact card inner layout */
+.card-compact{display:flex;flex-direction:column;gap:6px}
+.card-compact .photo img{width:350px;max-width:100%;height:auto;border:1px solid #ccc;border-radius:10px;cursor:default}
+
+/* Expanded layout INSIDE LIGHTBOX */
+.zoom-card-flex{display:flex;flex-direction:column;gap:12px}
+.zoom-card-flex .photo img{width:700px;max-width:100%;height:auto;border:1px solid #ccc;border-radius:10px;cursor:default}
+.zoom-card-flex .details{display:flex;flex-direction:column;gap:8px}
+
+/* Promo ribbon */
+.promo-badge {
+  position: static !important;
+  margin-top: 8px;
+  text-align: center;
+  background: #d60000;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 400;
+  display: inline-block;
+  padding: 3px 8px;
+  box-shadow: none;
+}
+
+
+/* Buttons */
+button{background:#0b3d2e;color:#fff;border:none;padding:6px 12px;border-radius:10px;cursor:pointer}
+button:disabled{background:#999;cursor:not-allowed}
+button:hover:not(:disabled){background:#095c42}
+
+/* Search bars row */
+.search-row{display:flex;gap:4%;margin:12px 0}
+.search-row input{flex:1;padding:6px;font-size:12px}
+
+/* 🔒 Overlay for blackout */
+#overlay{position:fixed;inset:0;background:#EDEADF;color:black;display:flex;align-items:center;justify-content:center;font-size:1.2rem;z-index:9999}
+
+/* Checkboxes */
+input[type="checkbox"]{accent-color:#0b3d2e}
+input[type="checkbox"]:hover{filter:brightness(1.1)}
+input[type="checkbox"]:focus{outline:2px solid #0b3d2e33;outline-offset:2px}
+
+/* Pro mode */
+.simple-hide{display:none!important}
+
+/* Tap-to-expand term */
+.def-term{cursor:pointer;text-decoration:underline dotted}
+.def-row .def-extra{display:none;margin:6px 0 0 0;font-weight:400} /* long text NOT bold */
+
+/* RX icons row */
+.rx-icons{display:flex;gap:10px;align-items:center;margin-top:8px}
+.rx-icons img{max-height:auto;max-width:70%;border:1px solid #ccc;border-radius:6px;padding:2px;background:#fff}
+
+/* Responsive */
+@media (max-width:900px){#cardsGrid{grid-template-columns:repeat(2,minmax(220px,1fr))}}
+@media (max-width:550px){#cardsGrid{grid-template-columns:1fr}}
+
+
+
+
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="wrap">
+
+
+
+  <div style="display:flex; flex-direction:column; align-items:center; width:90%">
+
+<div style="height:20px"></div>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:10px; margin:20px 0;">
+
+    <img src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/1.png"
+         style="width:90%; border-radius:5px;">
+    <img src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/2.png"
+         style="width:90%; border-radius:5px;">
+    <img src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/3.png"
+         style="width:90%; border-radius:5px;">
+    <img src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/4.png"
+         style="width:90%; border-radius:5px;">
+
+
+
+<div style="display:flex; flex-direction:column; align-items:center;">
+  <video controls style="width:90%; height:350px; border-radius:5px;">
+    <source src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/photochromic.mp4" type="video/mp4">
+  </video>
+
+
+</div>
+    <img src="https://raw.githubusercontent.com/kiaraoptometrypx/CL-SELECTOR/main/5.png"
+         style="width:90%; border-radius:5px;">
+
+
+</div>
+
+
+</body>
+
+
+
+
+
+</html>
+
+
