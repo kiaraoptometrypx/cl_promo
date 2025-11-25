@@ -2,134 +2,245 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Most Accurate Prescription – Kiara Optometry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eye Exam Reinvented — Kiara</title>
 
 <style>
-  body{
-    font-family: system-ui, sans-serif;
-    margin:0;
-    padding:0;
-    background:#fafafa;
-    color:#0b3d2e;
-    text-align:center;
-  }
+:root{
+  --green:#0b3d2e;
+  --offwhite:#fdfcf7;
+}
 
-  .section{
-    padding:40px 20px;
-    max-width:600px;
-    margin:auto;
-  }
+/* GLOBAL */
+body{
+  margin:0;
+  padding:0;
+  background:var(--offwhite);
+  color:var(--green);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  text-align:center;
+  overflow-x:hidden;
+}
 
-  h1{ font-size:28px; margin-bottom:12px; }
-  h2{ font-size:22px; margin-bottom:10px; }
-  p{ font-size:15px; line-height:1.5; opacity:0.9; }
+/* LOGO */
+.logo{
+  font-size:13px;
+  letter-spacing:6px;
+  margin-top:30px;
+  font-weight:500;
+  opacity:.85;
+  animation:fadeUp 1.2s ease forwards;
+  line-height:1.5;
+}
 
-  .btn{
-    display:inline-block;
-    margin-top:20px;
-    background:#0b3d2e;
-    color:#ffffe0;
-    padding:14px 26px;
-    border-radius:8px;
-    text-decoration:none;
-    font-size:16px;
-  }
+/* TYPOGRAPHY */
+h1{
+  font-size:40px;
+  font-weight:500;
+  letter-spacing:-0.3px;
+  line-height:1.18;
+  margin:80px 0 20px;
+  opacity:0;
+  transform:translateY(28px);
+  animation:fadeUp 1.4s ease forwards;
+}
 
-  ul{
-    text-align:left;
-    max-width:480px;
-    margin:0 auto;
-    padding-left:20px;
-  }
+p{
+  font-size:18px;
+  line-height:1.55;
+  max-width:540px;
+  opacity:0;
+  animation:fadeUp 1.8s ease forwards;
+}
 
-  .trust-item{
-    background:white;
-    border-radius:10px;
-    padding:14px;
-    margin:10px auto;
-    box-shadow:0 0 10px rgba(0,0,0,0.08);
-    border:1px solid #ececec;
-    font-size:15px;
-  }
+/* IMAGE */
+img{
+  max-width:92%;
+  margin:40px auto 0;
+  border-radius:14px;
+  opacity:0;
+  animation:fadeUp 2.0s ease forwards;
+}
 
-  img{
-    max-width:100%;
-    border-radius:8px;
-    margin-top:20px;
-  }
+/* TRUST */
+.trust{
+  font-size:14px;
+  opacity:.5;
+  margin-top:28px;
+  animation:fadeUp 2.2s ease forwards;
+}
+
+/* CTA */
+.btn{
+  display:inline-block;
+  margin-top:36px;
+  background:var(--green);
+  color:white;
+  padding:15px 40px;
+  font-size:17px;
+  border-radius:12px;
+  text-decoration:none;
+  opacity:0;
+  animation:fadeUp 2.3s ease forwards;
+  transition:0.25s;
+}
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* WHATSAPP */
+#waFloat{
+  position:fixed;
+  right:18px;
+  bottom:24px;
+  background:#25D366;
+  color:white;
+  padding:12px 20px;
+  border-radius:40px;
+  font-size:15px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.18);
+  text-decoration:none;
+  z-index:999;
+}
+#waFloat img{
+  width:22px;
+  height:22px;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+  0%{ opacity:0; transform:translateY(28px); }
+  100%{ opacity:1; transform:translateY(0); }
+}
+
+/* ROTATING BANNER */
+.rotateBanner{
+  font-size:40px;
+  margin-top:5px;
+  font-weight:500;
+  height:50px;
+  overflow:hidden;
+  color:#0b3d2e;
+  position:relative;
+}
+
+.rotateBanner span{
+  position:absolute;
+  width:100%;
+  left:0;
+  top:0;
+  opacity:0;
+  transform:translateY(20px);
+  animation:rotateWords 10s infinite;
+}
+.rotateBanner span:nth-child(1){ animation-delay:0s; }
+.rotateBanner span:nth-child(2){ animation-delay:2.5s; }
+.rotateBanner span:nth-child(3){ animation-delay:5s; }
+.rotateBanner span:nth-child(4){ animation-delay:7.5s; }
+
+
+@keyframes rotateWords{
+  0%{opacity:0; transform:translateY(20px);}
+  10%{opacity:1; transform:translateY(0);}
+  25%{opacity:1; transform:translateY(0);}
+  35%{opacity:0; transform:translateY(-20px);}
+  100%{opacity:0;}
+}
+
+/* INFO PANE */
+.infopane{
+  width:100%;
+  background:#f3f0e9;
+  animation:fadePane 2s ease forwards;
+  opacity:0;
+  text-align:center;  
+  padding:30px 0px 30px 0px; 
+}
+
+
+@keyframes fadePane{
+  0%{opacity:0; transform:translateY(20px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+
+/* TEXT BLOCKS */
+.designerMix{
+  font-size:15px;
+  max-width:600px;
+  color:#0b3d2e;
+  text-align:center;
+  font-weight:400;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  margin:0 auto;     
+}
+
+
+.big25{
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:-0.3px;
+  display:inline-block;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="section">
-  <h1>We Rebuilt the Entire Refraction Process — For The Most Accurate RX.</h1>
-  <p>Your vision deserves better than a typical 5-minute eye test.<br>
-  Our engineered system gives you the most precise prescription possible.</p>
-
-  <a href="https://wa.me/60123456789" class="btn">Book Eye Check</a>
+<div class="logo">
+  KIARA OPTOMETRY<br>at Mont Kiara
 </div>
 
-<!-- VISUAL PROOF (you replace with your Fan Chart comparison) -->
-<div class="section">
-  <h2>See the Difference</h2>
-  <p>Engineered accuracy vs generic optical shop testing.</p>
-  <img src="fan-chart-comparison.jpg" alt="Accuracy Comparison">
-</div>
+<h1>
+  The eye exam is reinvented.<br>
+  <div class="rotateBanner">
+    <span>It is accurate.</span>
+    <span>It is science-based.</span>
+    <span>It is repeatable.</span>
+    <span>It is the clearest possible.</span>
 
-<!-- WHY ACCURACY MATTERS -->
-<div class="section">
-  <h2>Why Accurate Power Matters</h2>
-  <ul>
-    <li>Sharper clarity instantly</li>
-    <li>Better night driving stability</li>
-    <li>Less eye strain and tiredness</li>
-    <li>Comfort for long computer hours</li>
-    <li>Better sports precision & reaction time</li>
-  </ul>
-</div>
-
-<!-- TRUST -->
-<div class="section">
-  <h2>Why People Trust Us</h2>
-
-  <div class="trust-item">
-    Engineered In-House • Built from the ground up for accuracy
   </div>
+</h1>
+<div style="height:20px"></div>
 
-  <div class="trust-item">
-    Used to Train Optometry Staff Nationwide
+
+  <div class="designerMix">
+    <div><span class="big25">No more confusing questions! </span> — like “which is clearer, 1 or 2?”</div>
+
+    <div><span class="big25">Prescriptions are factual numbers. </span> — not opinion nor guessing.</div></div>
+    
+<div style="height:40px"></div>
+
+<div class="infopane">
+<h2> When you see your best, every moment is a wonder. </h2>
+<a href="https://wa.me/601170199170" class="btn">Contact Us To Know More!</a>
+
+<div style="height:20px"></div>
+
+
+
   </div>
-
-  <div class="trust-item">
-    2000+ Prescription Analyses Completed
-  </div>
-
 </div>
 
-<!-- OFFER -->
-<div class="section">
-  <h2>Precision Eye Check</h2>
-  <p>Get your most accurate power — measured, verified, and guaranteed.</p>
-  <a href="https://wa.me/60123456789" class="btn">Book Eye Check</a>
-</div>
+<div style="height:20px"></div>
 
-<!-- TESTIMONIALS -->
-<div class="section">
-  <h2>What People Say</h2>
-  <ul>
-    <li>⭐ “My power finally feels stable and sharp.” — Michelle</li>
-    <li>⭐ “Night driving is so much clearer now.” — Adrian</li>
-    <li>⭐ “Didn’t know my old glasses were that inaccurate.” — Jason</li>
-  </ul>
-</div>
 
-<!-- FINAL CTA -->
-<div class="section" style="padding-bottom:60px;">
-  <a href="https://wa.me/60123456789" class="btn">Book Eye Check</a>
-</div>
+
+  <div class="designerMix">
+    <div><span class="big25">No more confusing questions! </span> — like “which is clearer, 1 or 2?”</div>
+
+    <div><span class="big25">Prescriptions are factual numbers. </span> — not opinion nor guessing.</div></div><img src="fan-chart-clean-compare.jpg" alt="Accuracy Comparison">
+
+<div class="trust">Used in-house and by optometry staff for training.</div>
+
+<a href="https://wa.me/601170199170" class="btn">Book Eye Check</a>
+
+
 
 </body>
 </html>
